@@ -1,89 +1,143 @@
 "use client";
 
-import { useState } from "react";
-import { Mail, Check, ArrowRight, Flower } from "./Icons";
+import { useState, useRef, useEffect } from "react";
+import { ArrowRight, Check, Mail, Sparkles } from "./Icons";
 
 export default function NewsletterSignup() {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  useEffect(() => {
+    return () => clearTimeout(timeoutRef.current);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
       setIsSubscribed(true);
       setEmail("");
-      setTimeout(() => setIsSubscribed(false), 3000);
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => setIsSubscribed(false), 3000);
     }
   };
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-br from-brand-pink-light/30 via-brand-warm-white to-brand-gold-light/20">
+    <section
+      ref={sectionRef}
+      className="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative bg-white rounded-3xl shadow-xl overflow-hidden">
-          {/* Decorative elements */}
-          <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-brand-pink-light/30 blur-2xl" />
-          <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-brand-gold-light/20 blur-2xl" />
-
-          <div className="relative z-10 px-6 py-12 md:py-16 md:px-16 text-center">
-            <div className="max-w-2xl mx-auto">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-pink to-brand-gold flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <Flower size={24} className="text-white" />
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-light text-brand-charcoal mb-3">
-                Stay in the Vogue
-              </h2>
-              <div className="section-divider" />
-              <p className="text-brand-charcoal/60 text-sm md:text-base mb-8 max-w-md mx-auto">
-                Subscribe for exclusive early access to new collections,
-                members-only pricing, and style inspiration delivered to your
-                inbox.
-              </p>
-
-              {isSubscribed ? (
-                <div className="flex items-center justify-center gap-2 text-green-600 bg-green-50 rounded-full px-6 py-3 mx-auto max-w-sm">
-                  <Check size={18} />
-                  <span className="text-sm font-medium">
-                    You&apos;re subscribed! Welcome to the circle.
-                  </span>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-                >
-                  <div className="flex-1 relative">
-                    <Mail
-                      size={16}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-charcoal/30"
-                    />
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Your email address"
-                      required
-                      className="w-full pl-11 pr-4 py-3 bg-brand-soft-rose border border-brand-pink-light/40 rounded-full text-sm focus:outline-none focus:border-brand-pink transition-colors"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="btn-primary group whitespace-nowrap"
-                  >
-                    Subscribe
-                    <ArrowRight
-                      size={16}
-                      className="group-hover:translate-x-1 transition-transform"
-                    />
-                  </button>
-                </form>
-              )}
-
-              <p className="text-xs text-brand-charcoal/40 mt-4">
-                No spam, ever. Unsubscribe anytime.
-              </p>
-            </div>
+        <div
+          className="max-w-lg mx-auto text-center"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(24px)",
+            transition: "all 0.6s ease-out",
+          }}
+        >
+          {/* Icon */}
+          <div
+            className="inline-flex items-center justify-center w-12 h-12 bg-brand-pink-light/30 rounded-full mb-4"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? "scale(1)" : "scale(0.8)",
+              transition: "all 0.5s ease-out 0.1s",
+            }}
+          >
+            <Mail size={20} className="text-brand-pink" />
           </div>
+
+          {/* Heading */}
+          <h2 className="text-2xl md:text-3xl font-light text-[#1a1a1a] mb-2">
+            Stay in the Loop
+          </h2>
+          <div
+            className="section-divider"
+            style={{
+              width: isVisible ? "48px" : "0",
+              transition: "width 0.6s ease-out 0.2s",
+            }}
+          />
+          <p className="text-sm text-gray-500 mb-7">
+            Subscribe for early access to new collections and exclusive offers.
+          </p>
+
+          {/* Form */}
+          {isSubscribed ? (
+            <div
+              className="flex items-center justify-center gap-2 text-green-700 bg-green-50 px-4 py-3 animate-scale-in-up"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transition: "opacity 0.4s ease-out 0.3s",
+              }}
+            >
+              <Check size={16} />
+              <span className="text-sm font-medium">
+                You&apos;re subscribed!
+              </span>
+            </div>
+          ) : (
+            <form
+              onSubmit={handleSubmit}
+              className="flex gap-2"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateY(0)" : "translateY(12px)",
+                transition: "all 0.5s ease-out 0.3s",
+              }}
+            >
+              <div className="relative flex-1">
+                <Mail
+                  size={14}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300"
+                />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your email address"
+                  required
+                  className="w-full pl-9 pr-4 py-2.5 bg-white border border-gray-200 text-sm focus:outline-none focus:border-brand-pink focus:ring-1 focus:ring-brand-pink/20 transition-all duration-200"
+                />
+              </div>
+              <button
+                type="submit"
+                className="px-5 py-2.5 bg-[#1a1a1a] text-white text-xs font-semibold tracking-wider uppercase hover:bg-brand-pink-dark transition-all duration-300 flex items-center gap-1.5"
+              >
+                Subscribe
+                <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+              </button>
+            </form>
+          )}
+
+          {/* Footer note */}
+          <p
+            className="text-[11px] text-gray-400 mt-3 flex items-center justify-center gap-1"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transition: "opacity 0.5s ease-out 0.4s",
+            }}
+          >
+            <Sparkles size={10} />
+            No spam. Unsubscribe anytime.
+          </p>
         </div>
       </div>
     </section>

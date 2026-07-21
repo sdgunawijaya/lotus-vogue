@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { getProductBySlug, getRelatedProducts } from "@/data/products";
+import { useAdminData } from "@/context/AdminDataContext";
 import { formatPrice, calculateDiscount } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import ProductCard from "@/components/ProductCard";
+import SizeGuideModal from "@/components/SizeGuideModal";
 import {
   Star,
   ShoppingBag,
@@ -22,6 +23,7 @@ import {
 export default function ProductDetailPage() {
   const params = useParams();
   const { addItem } = useCart();
+  const { getProductBySlug, getRelatedProducts } = useAdminData();
   const product = getProductBySlug(params.slug as string);
 
   const [selectedSize, setSelectedSize] = useState("");
@@ -29,6 +31,7 @@ export default function ProductDetailPage() {
   const [currentImage, setCurrentImage] = useState(0);
   const [isAdded, setIsAdded] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
 
   if (!product) {
     return (
@@ -264,7 +267,10 @@ export default function ProductDetailPage() {
                     {selectedSize || product.sizes[0]}
                   </span>
                 </span>
-                <button className="text-xs text-brand-pink hover:underline">
+                <button
+                  onClick={() => setShowSizeGuide(true)}
+                  className="text-xs text-brand-pink hover:underline"
+                >
                   Size Guide
                 </button>
               </div>
@@ -377,6 +383,12 @@ export default function ProductDetailPage() {
           </div>
         )}
       </div>
+
+      {/* Size guide modal */}
+      <SizeGuideModal
+        isOpen={showSizeGuide}
+        onClose={() => setShowSizeGuide(false)}
+      />
     </div>
   );
 }

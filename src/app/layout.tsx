@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import { SiteSettingsProvider } from "@/context/SiteSettingsContext";
+import { AdminDataProvider } from "@/context/AdminDataContext";
+import { QuickViewProvider } from "@/context/QuickViewContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
+import QuickViewModal from "@/components/QuickViewModal";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -46,15 +46,23 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${poppins.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <CartProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <CartDrawer />
-        </CartProvider>
+        <SiteSettingsProvider>
+          <AdminDataProvider>
+            <CartProvider>
+              <QuickViewProvider>
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+                <CartDrawer />
+                <QuickViewModal />
+              </QuickViewProvider>
+            </CartProvider>
+          </AdminDataProvider>
+        </SiteSettingsProvider>
       </body>
     </html>
   );

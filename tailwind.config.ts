@@ -25,8 +25,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "Georgia", "serif"],
-        mono: ["var(--font-geist-mono)"],
+        sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
+        display: ["var(--font-poppins)", "Georgia", "serif"],
       },
     },
   },
