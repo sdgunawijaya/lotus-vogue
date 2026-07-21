@@ -1,8 +1,8 @@
-import type { SVGProps } from "react";
+import type { SVGProps, ReactNode } from "react";
 
 type IconProps = SVGProps<SVGSVGElement> & { size?: number };
 
-function createIcon(path: string, viewBox = "0 0 24 24") {
+function createIcon(children: ReactNode, viewBox = "0 0 24 24") {
   return ({ size = 24, className, ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,7 @@ function createIcon(path: string, viewBox = "0 0 24 24") {
       className={className}
       {...props}
     >
-      {path}
+      {children}
     </svg>
   );
 }
