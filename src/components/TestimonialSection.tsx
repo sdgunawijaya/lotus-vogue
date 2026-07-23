@@ -56,7 +56,7 @@ export default function TestimonialSection({
               : "opacity-0 translate-y-6"
           }`}
         >
-          <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.2em] uppercase text-brand-pink font-medium">
+          <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.2em] uppercase text-brand-accent font-medium">
             <Sparkles size={10} />
             Loved by Customers
           </span>
@@ -98,7 +98,7 @@ export default function TestimonialSection({
               </p>
 
               <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-pink to-brand-gold flex items-center justify-center text-white text-[11px] font-semibold">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-gold-dark to-brand-gold flex items-center justify-center text-white text-[11px] font-semibold">
                   {testimonial.avatar}
                 </div>
                 <div>
@@ -143,7 +143,7 @@ export default function TestimonialSection({
             </p>
 
             <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-pink to-brand-gold flex items-center justify-center text-white text-xs font-semibold">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-gold-dark to-brand-gold flex items-center justify-center text-white text-xs font-semibold">
                 {active.avatar}
               </div>
               <div className="flex-1">
@@ -164,7 +164,7 @@ export default function TestimonialSection({
                         (prev - 1 + testimonials.length) % testimonials.length
                     )
                   }
-                  className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="touch-target p-1.5 text-gray-400 hover:text-gray-600 transition-colors"
                   aria-label="Previous testimonial"
                 >
                   <ChevronLeft size={16} />
@@ -176,7 +176,7 @@ export default function TestimonialSection({
                       onClick={() => setActiveIndex(i)}
                       className={`transition-all duration-300 rounded-full ${
                         i === activeIndex
-                          ? "w-5 h-1.5 bg-brand-pink"
+                          ? "w-5 h-1.5 bg-brand-accent"
                           : "w-1.5 h-1.5 bg-gray-300 hover:bg-gray-400"
                       }`}
                       aria-label={`Go to testimonial ${i + 1}`}
@@ -187,7 +187,7 @@ export default function TestimonialSection({
                   onClick={() =>
                     setActiveIndex((prev) => (prev + 1) % testimonials.length)
                   }
-                  className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="touch-target p-1.5 text-gray-400 hover:text-gray-600 transition-colors"
                   aria-label="Next testimonial"
                 >
                   <ChevronRight size={16} />

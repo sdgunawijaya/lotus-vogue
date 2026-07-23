@@ -104,7 +104,7 @@ function BrandStrip() {
                 transition: `all 0.5s ease-out ${i * 0.1}s`,
               }}
             >
-              <span className="text-brand-pink">{item.icon}</span>
+              <span className="text-brand-gold">{item.icon}</span>
               {item.label}
             </span>
           ))}

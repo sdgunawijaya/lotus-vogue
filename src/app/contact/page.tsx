@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Mail, MapPin, Phone, Send, Check, Flower } from "@/components/Icons";
+import RevealOnScroll from "@/components/RevealOnScroll";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -21,9 +22,9 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-brand-warm-white">
       {/* Header */}
-      <section className="py-16 md:py-20 bg-white">
+      <RevealOnScroll animation="fade" className="py-16 md:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-pink/10 rounded-full text-brand-pink-dark text-xs font-medium tracking-wider mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-accent/10 rounded-full text-brand-accent-dark text-xs font-medium tracking-wider mb-6">
             <Flower size={14} />
             <span>Get in Touch</span>
           </div>
@@ -36,20 +37,20 @@ export default function ContactPage() {
             here to help.
           </p>
         </div>
-      </section>
+      </RevealOnScroll>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Contact info */}
-          <div className="lg:col-span-2 space-y-8">
+          <RevealOnScroll animation="up" className="lg:col-span-2 space-y-8">
             <div>
               <h2 className="text-lg font-medium text-brand-charcoal mb-6">
                 Contact Information
               </h2>
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-brand-pink-light/30 flex items-center justify-center flex-shrink-0">
-                    <Mail size={18} className="text-brand-pink-dark" />
+                  <div className="w-10 h-10 rounded-xl bg-brand-accent-light/30 flex items-center justify-center flex-shrink-0">
+                    <Mail size={18} className="text-brand-accent-dark" />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-brand-charcoal">
@@ -57,7 +58,7 @@ export default function ContactPage() {
                     </p>
                     <a
                       href="mailto:hello@lotusvogue.com"
-                      className="text-sm text-brand-charcoal/60 hover:text-brand-pink transition-colors"
+                      className="text-sm text-brand-charcoal/60 hover:text-brand-accent transition-colors"
                     >
                       hello@lotusvogue.com
                     </a>
@@ -67,8 +68,8 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-brand-pink-light/30 flex items-center justify-center flex-shrink-0">
-                    <Phone size={18} className="text-brand-pink-dark" />
+                  <div className="w-10 h-10 rounded-xl bg-brand-accent-light/30 flex items-center justify-center flex-shrink-0">
+                    <Phone size={18} className="text-brand-accent-dark" />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-brand-charcoal">
@@ -76,7 +77,7 @@ export default function ContactPage() {
                     </p>
                     <a
                       href="tel:+12125551234"
-                      className="text-sm text-brand-charcoal/60 hover:text-brand-pink transition-colors"
+                      className="text-sm text-brand-charcoal/60 hover:text-brand-accent transition-colors"
                     >
                       +1 (212) 555-1234
                     </a>
@@ -86,8 +87,8 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-brand-pink-light/30 flex items-center justify-center flex-shrink-0">
-                    <MapPin size={18} className="text-brand-pink-dark" />
+                  <div className="w-10 h-10 rounded-xl bg-brand-accent-light/30 flex items-center justify-center flex-shrink-0">
+                    <MapPin size={18} className="text-brand-accent-dark" />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-brand-charcoal">
@@ -104,7 +105,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="bg-brand-soft-rose rounded-2xl p-6">
+            <RevealOnScroll animation="up" delay={100} className="bg-brand-soft-rose rounded-2xl p-6">
               <h3 className="text-sm font-medium text-brand-charcoal mb-3">
                 Frequently Asked Questions
               </h3>
@@ -116,18 +117,18 @@ export default function ContactPage() {
                   "Do you ship internationally?",
                 ].map((q) => (
                   <li key={q}>
-                    <button className="text-sm text-brand-pink hover:text-brand-pink-dark transition-colors">
+                    <button className="text-sm text-brand-accent hover:text-brand-accent-dark transition-colors">
                       {q}
                     </button>
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
+            </RevealOnScroll>
+          </RevealOnScroll>
 
           {/* Contact form */}
-          <div className="lg:col-span-3">
-            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-brand-pink-light/20">
+          <RevealOnScroll animation="up" delay={150} className="lg:col-span-3">
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-brand-accent-light/20">
               <h2 className="text-lg font-medium text-brand-charcoal mb-6">
                 Send Us a Message
               </h2>
@@ -163,7 +164,7 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        className="w-full px-4 py-2.5 bg-brand-soft-rose border border-brand-pink-light/40 rounded-xl text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                        className="w-full px-4 py-3 bg-brand-soft-rose border border-brand-accent-light/40 rounded-xl text-sm focus:outline-none focus:border-brand-accent transition-colors min-h-[44px]"
                         placeholder="Your name"
                       />
                     </div>
@@ -182,7 +183,7 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        className="w-full px-4 py-2.5 bg-brand-soft-rose border border-brand-pink-light/40 rounded-xl text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                        className="w-full px-4 py-3 bg-brand-soft-rose border border-brand-accent-light/40 rounded-xl text-sm focus:outline-none focus:border-brand-accent transition-colors min-h-[44px]"
                         placeholder="you@example.com"
                       />
                     </div>
@@ -200,7 +201,7 @@ export default function ContactPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, subject: e.target.value })
                       }
-                      className="w-full px-4 py-2.5 bg-brand-soft-rose border border-brand-pink-light/40 rounded-xl text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                      className="w-full px-4 py-3 bg-brand-soft-rose border border-brand-accent-light/40 rounded-xl text-sm focus:outline-none focus:border-brand-accent transition-colors min-h-[44px]"
                     >
                       <option value="">Select a topic...</option>
                       <option value="order">Order Inquiry</option>
@@ -226,7 +227,7 @@ export default function ContactPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="w-full px-4 py-2.5 bg-brand-soft-rose border border-brand-pink-light/40 rounded-xl text-sm focus:outline-none focus:border-brand-pink transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-brand-soft-rose border border-brand-accent-light/40 rounded-xl text-sm focus:outline-none focus:border-brand-accent transition-colors resize-none min-h-[44px]"
                       placeholder="How can we help you?"
                     />
                   </div>
@@ -240,7 +241,7 @@ export default function ContactPage() {
                 </form>
               )}
             </div>
-          </div>
+          </RevealOnScroll>
         </div>
       </div>
     </div>

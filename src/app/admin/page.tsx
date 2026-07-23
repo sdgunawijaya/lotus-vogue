@@ -30,7 +30,7 @@ export default function AdminDashboard() {
       label: "Total Products",
       value: products.length,
       icon: ShoppingBag,
-      color: "bg-pink-100 text-pink-600",
+      color: "bg-amber-100 text-amber-600",
       href: "/admin/products",
     },
     {
@@ -103,10 +103,16 @@ export default function AdminDashboard() {
       <div className="flex flex-wrap gap-3">
         <Link
           href="/admin/products/new"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-brand-pink text-white text-sm font-medium rounded-lg hover:bg-brand-pink-dark transition-colors"
+          className="group relative inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg overflow-hidden transition-all duration-300"
         >
-          <ShoppingBag size={16} />
-          Add Product
+          <span className="absolute inset-0 bg-brand-accent transition-colors duration-300 group-hover:bg-brand-accent-dark" />
+          <span className="relative z-10 flex items-center gap-2 text-white">
+            <ShoppingBag size={16} />
+            Add Product
+          </span>
+          <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-gold-shimmer" />
+          </span>
         </Link>
         <Link
           href="/admin/categories"
@@ -117,7 +123,7 @@ export default function AdminDashboard() {
         </Link>
         <Link
           href="/admin/design"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-white text-gray-700 text-sm font-medium rounded-lg border border-gray-200 hover:border-brand-pink transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-white text-gray-700 text-sm font-medium rounded-lg border border-gray-200 hover:border-brand-accent transition-colors"
         >
           <TrendingUp size={16} />
           Customize Design
@@ -133,7 +139,7 @@ export default function AdminDashboard() {
             </h2>
             <Link
               href="/admin/products"
-              className="text-xs text-brand-pink hover:underline"
+              className="text-xs text-brand-accent hover:underline"
             >
               View all
             </Link>
@@ -161,7 +167,7 @@ export default function AdminDashboard() {
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-medium text-brand-pink-dark">
+                  <p className="text-sm font-medium text-brand-accent-dark">
                     {formatPrice(product.price)}
                   </p>
                   {product.isNew && (
@@ -211,7 +217,7 @@ export default function AdminDashboard() {
                     </span>
                   </div>
                 </div>
-                <span className="text-sm font-medium text-brand-pink-dark">
+                <span className="text-sm font-medium text-brand-accent-dark">
                   {formatPrice(product.price)}
                 </span>
               </div>

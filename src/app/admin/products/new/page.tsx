@@ -208,7 +208,7 @@ export default function NewProductPage() {
                 required
                 value={formData.name}
                 onChange={(e) => updateField("name", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors"
                 placeholder="e.g., Lotus Floral Midi Dress"
               />
             </div>
@@ -220,7 +220,7 @@ export default function NewProductPage() {
               <select
                 value={formData.category}
                 onChange={(e) => updateField("category", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink bg-white"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent bg-white"
               >
                 {categories.map((cat) => (
                   <option key={cat.id} value={cat.slug}>
@@ -242,7 +242,7 @@ export default function NewProductPage() {
                   required
                   value={formData.price}
                   onChange={(e) => updateField("price", e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors"
                   placeholder="89.00"
                 />
               </div>
@@ -258,7 +258,7 @@ export default function NewProductPage() {
                   onChange={(e) =>
                     updateField("originalPrice", e.target.value)
                   }
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors"
                   placeholder="129.00 (optional)"
                 />
               </div>
@@ -274,7 +274,7 @@ export default function NewProductPage() {
               rows={4}
               value={formData.description}
               onChange={(e) => updateField("description", e.target.value)}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors resize-none"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors resize-none"
               placeholder="Product description..."
             />
           </div>
@@ -285,7 +285,7 @@ export default function NewProductPage() {
                 type="checkbox"
                 checked={formData.isNew}
                 onChange={(e) => updateField("isNew", e.target.checked)}
-                className="w-4 h-4 rounded border-gray-300 text-brand-pink focus:ring-brand-pink"
+                className="w-4 h-4 rounded border-gray-300 text-brand-accent focus:ring-brand-accent"
               />
               <span className="text-sm text-gray-700">New Arrival</span>
             </label>
@@ -294,7 +294,7 @@ export default function NewProductPage() {
                 type="checkbox"
                 checked={formData.isSale}
                 onChange={(e) => updateField("isSale", e.target.checked)}
-                className="w-4 h-4 rounded border-gray-300 text-brand-pink focus:ring-brand-pink"
+                className="w-4 h-4 rounded border-gray-300 text-brand-accent focus:ring-brand-accent"
               />
               <span className="text-sm text-gray-700">On Sale</span>
             </label>
@@ -312,7 +312,7 @@ export default function NewProductPage() {
                 max="5"
                 value={formData.rating}
                 onChange={(e) => updateField("rating", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors"
               />
             </div>
             <div>
@@ -324,7 +324,7 @@ export default function NewProductPage() {
                 min="0"
                 value={formData.reviewCount}
                 onChange={(e) => updateField("reviewCount", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors"
               />
             </div>
           </div>
@@ -339,7 +339,7 @@ export default function NewProductPage() {
             <button
               type="button"
               onClick={addDetail}
-              className="text-xs text-brand-pink hover:underline flex items-center gap-1"
+              className="text-xs text-brand-accent hover:underline flex items-center gap-1"
             >
               <Plus size={12} />
               Add detail
@@ -353,7 +353,7 @@ export default function NewProductPage() {
                   type="text"
                   value={detail}
                   onChange={(e) => handleDetailChange(i, e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors"
                   placeholder="e.g., Flowing A-line silhouette"
                 />
                 {formData.details.length > 1 && (
@@ -383,7 +383,7 @@ export default function NewProductPage() {
                 onClick={() => toggleSize(size)}
                 className={`px-3 py-1.5 text-sm rounded-lg border transition-all ${
                   formData.sizes.includes(size)
-                    ? "border-brand-pink bg-brand-pink text-white"
+                    ? "border-brand-accent bg-brand-accent text-white"
                     : "border-gray-200 text-gray-600 hover:border-gray-300"
                 }`}
               >
@@ -394,7 +394,7 @@ export default function NewProductPage() {
               <input
                 type="text"
                 placeholder="Custom"
-                className="w-16 px-2 py-1.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink"
+                className="w-16 px-2 py-1.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-brand-accent"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     e.preventDefault();
@@ -422,7 +422,7 @@ export default function NewProductPage() {
             <button
               type="button"
               onClick={addColor}
-              className="text-xs text-brand-pink hover:underline flex items-center gap-1"
+              className="text-xs text-brand-accent hover:underline flex items-center gap-1"
             >
               <Plus size={12} />
               Add color
@@ -462,7 +462,7 @@ export default function NewProductPage() {
             <button
               type="button"
               onClick={addImage}
-              className="text-xs text-brand-pink hover:underline flex items-center gap-1"
+              className="text-xs text-brand-accent hover:underline flex items-center gap-1"
             >
               <Plus size={12} />
               Add image
@@ -488,7 +488,7 @@ export default function NewProductPage() {
                   type="url"
                   value={img}
                   onChange={(e) => handleImageChange(i, e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors"
                   placeholder="https://images.unsplash.com/..."
                 />
                 {formData.images.length > 1 && (
@@ -516,9 +516,13 @@ export default function NewProductPage() {
           <button
             type="submit"
             disabled={saving || !formData.name || !formData.price}
-            className="px-6 py-2 bg-brand-pink text-white text-sm font-medium rounded-lg hover:bg-brand-pink-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="group relative px-6 py-2 text-sm font-medium rounded-lg overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
           >
-            {saving ? "Creating..." : "Create Product"}
+            <span className="absolute inset-0 bg-brand-accent transition-colors duration-300 group-hover:bg-brand-accent-dark" />
+            <span className="relative z-10 text-white">{saving ? "Creating..." : "Create Product"}</span>
+            <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-gold-shimmer" />
+            </span>
           </button>
         </div>
       </form>

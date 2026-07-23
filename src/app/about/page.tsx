@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Flower, Sparkles, Heart, Shield, ArrowRight } from "@/components/Icons";
+import RevealOnScroll from "@/components/RevealOnScroll";
 
 const values = [
   {
@@ -32,10 +33,10 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-brand-warm-white">
       {/* Hero */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-pink-light/20 via-transparent to-brand-gold-light/20" />
+      <RevealOnScroll as="section" animation="fade" className="relative py-20 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-accent-light/20 via-transparent to-brand-gold-light/20" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-pink/10 rounded-full text-brand-pink-dark text-xs font-medium tracking-wider mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-accent/10 rounded-full text-brand-accent-dark text-xs font-medium tracking-wider mb-6">
             <Flower size={14} />
             <span>Our Story</span>
           </div>
@@ -52,10 +53,10 @@ export default function AboutPage() {
             around them.
           </p>
         </div>
-      </section>
+      </RevealOnScroll>
 
       {/* Story */}
-      <section className="py-16 md:py-24 bg-white">
+      <RevealOnScroll as="section" animation="up" className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -99,7 +100,7 @@ export default function AboutPage() {
                 />
               </div>
               <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg p-4">
-                <p className="text-2xl font-light text-brand-pink-dark">
+                <p className="text-2xl font-light text-brand-accent-dark">
                   50+
                 </p>
                 <p className="text-xs text-brand-charcoal/50">
@@ -109,10 +110,10 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </RevealOnScroll>
 
       {/* Values */}
-      <section className="py-16 md:py-24 bg-brand-cream/50">
+      <RevealOnScroll as="section" animation="up" className="py-16 md:py-24 bg-brand-cream/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-light text-brand-charcoal mb-4">
@@ -123,8 +124,8 @@ export default function AboutPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value) => (
               <div key={value.title} className="text-center">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-pink/20 to-brand-gold-light/20 flex items-center justify-center mx-auto mb-5">
-                  <value.icon size={24} className="text-brand-pink" />
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-accent/20 to-brand-gold-light/20 flex items-center justify-center mx-auto mb-5">
+                  <value.icon size={24} className="text-brand-accent" />
                 </div>
                 <h3 className="text-lg font-medium text-brand-charcoal mb-3">
                   {value.title}
@@ -136,10 +137,10 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </RevealOnScroll>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-brand-pink/10 to-brand-gold-light/10">
+      <RevealOnScroll as="section" animation="up" delay={200} className="py-16 md:py-24 bg-gradient-to-br from-brand-accent/10 to-brand-gold-light/10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-light text-brand-charcoal mb-4">
             Ready to Bloom?
@@ -152,7 +153,7 @@ export default function AboutPage() {
             Shop Now
           </Link>
         </div>
-      </section>
+      </RevealOnScroll>
     </div>
   );
 }

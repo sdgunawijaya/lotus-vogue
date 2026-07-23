@@ -59,7 +59,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
   if (!isInitialized) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-brand-pink border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-brand-accent border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -126,12 +126,12 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
             href="/admin"
             className="flex items-center gap-2"
           >
-            <Flower size={22} className="text-brand-pink" />
+            <Flower size={22} className="text-brand-accent" />
             <span className="text-base font-light tracking-[0.15em]">
               LOTUS
               <span className="font-normal text-brand-gold">VOGUE</span>
             </span>
-            <span className="ml-auto text-[10px] bg-brand-pink/20 text-brand-pink-light px-2 py-0.5 rounded-full">
+            <span className="ml-auto text-[10px] bg-brand-accent/20 text-brand-accent-light px-2 py-0.5 rounded-full">
               Admin
             </span>
           </Link>
@@ -149,7 +149,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
                   onClick={() => setSidebarOpen(false)}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
                     isActive
-                      ? "bg-brand-pink/20 text-brand-pink-light font-medium"
+                      ? "bg-brand-accent/20 text-brand-accent-light font-medium"
                       : "text-white/60 hover:text-white hover:bg-white/5"
                   }`}
                 >
@@ -269,7 +269,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
                   type="password"
                   value={currentPw}
                   onChange={(e) => setCurrentPw(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors"
                   autoFocus
                 />
               </div>
@@ -281,7 +281,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
                   type="password"
                   value={newPw}
                   onChange={(e) => setNewPw(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors"
                 />
               </div>
               <div>
@@ -292,7 +292,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
                   type="password"
                   value={confirmPw}
                   onChange={(e) => setConfirmPw(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors"
                 />
               </div>
 
@@ -306,9 +306,13 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2 text-sm text-white bg-brand-pink rounded-lg hover:bg-brand-pink-dark transition-colors"
+                  className="group relative flex-1 px-4 py-2 text-sm text-white overflow-hidden rounded-lg transition-all duration-300"
                 >
-                  Update
+                  <span className="absolute inset-0 bg-brand-accent transition-colors duration-300 group-hover:bg-brand-accent-dark" />
+                  <span className="relative z-10">Update</span>
+                  <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-gold-shimmer" />
+                  </span>
                 </button>
               </div>
             </form>

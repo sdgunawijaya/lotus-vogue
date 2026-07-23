@@ -13,9 +13,9 @@ import {
 
 export interface SiteSettings {
   // Brand colors
-  brandPink: string;
-  brandPinkLight: string;
-  brandPinkDark: string;
+  brandAccent: string;
+  brandAccentLight: string;
+  brandAccentDark: string;
   brandGold: string;
   brandGoldLight: string;
   brandGoldDark: string;
@@ -50,9 +50,9 @@ export interface SiteSettings {
 }
 
 const DEFAULT_SETTINGS: SiteSettings = {
-  brandPink: "#E8A0BF",
-  brandPinkLight: "#F5D6E0",
-  brandPinkDark: "#D4729A",
+  brandAccent: "#C4A35A",
+  brandAccentLight: "#ECD9A0",
+  brandAccentDark: "#9B7B3C",
   brandGold: "#C9A84C",
   brandGoldLight: "#E8D48B",
   brandGoldDark: "#A68A30",
@@ -123,9 +123,9 @@ export function SiteSettingsProvider({
   useEffect(() => {
     if (!isInitialized) return;
     const root = document.documentElement;
-    root.style.setProperty("--brand-pink", settings.brandPink);
-    root.style.setProperty("--brand-pink-light", settings.brandPinkLight);
-    root.style.setProperty("--brand-pink-dark", settings.brandPinkDark);
+    root.style.setProperty("--brand-accent", settings.brandAccent);
+    root.style.setProperty("--brand-accent-light", settings.brandAccentLight);
+    root.style.setProperty("--brand-accent-dark", settings.brandAccentDark);
     root.style.setProperty("--brand-gold", settings.brandGold);
     root.style.setProperty("--brand-gold-light", settings.brandGoldLight);
     root.style.setProperty("--brand-gold-dark", settings.brandGoldDark);

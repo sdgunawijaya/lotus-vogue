@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
@@ -31,25 +31,44 @@ export default function CartDrawer() {
   const touchStartY = useRef(0);
   const touchDeltaY = useRef(0);
   const isDragging = useRef(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   if (pathname.startsWith("/admin")) return null;
 
-  // Lock body scroll when open
+  // Animated close handler — defined before effects that reference it
+  const handleClose = useCallback(() => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsClosing(false);
+      closeCart();
+    }, 300);
+  }, [closeCart]);
+
+  // Handle closing animation + body scroll
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
+    if (isOpen) {
+      setIsClosing(false);
+    }
+    document.body.style.overflow = isOpen || isClosing ? "hidden" : "";
+  }, [isOpen, isClosing]);
+
+  // Cleanup body scroll on unmount
+  useEffect(() => {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isOpen]);
+  }, []);
 
   // ESC key to close
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeCart();
+      if (e.key === "Escape") handleClose();
     };
-    window.addEventListener("keydown", handleEsc);
+    if (isOpen) {
+      window.addEventListener("keydown", handleEsc);
+    }
     return () => window.removeEventListener("keydown", handleEsc);
-  }, [closeCart]);
+  }, [isOpen, handleClose]);
 
   // Swipe down to dismiss (mobile)
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
@@ -76,32 +95,38 @@ export default function CartDrawer() {
     if (!isDragging.current) return;
     isDragging.current = false;
     if (touchDeltaY.current > 100) {
-      closeCart();
+      handleClose();
     } else if (drawerRef.current) {
       drawerRef.current.style.transform = "";
       drawerRef.current.style.transition = "";
     }
     touchDeltaY.current = 0;
-  }, [closeCart]);
+  }, [handleClose]);
 
   const shippingThreshold = 100;
   const remainingForFree = shippingThreshold - subtotal;
   const progress = Math.min((subtotal / shippingThreshold) * 100, 100);
 
-  if (!isOpen) return null;
+  if (!isOpen && !isClosing) return null;
 
   return (
     <div className="fixed inset-0 z-[60]">
-      {/* Overlay */}
+      {/* Overlay with blur - matching QuickView modal style */}
       <div
-        className="absolute inset-0 bg-black/30 cart-overlay"
-        onClick={closeCart}
+        className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 ${
+          isClosing ? "opacity-0" : "opacity-100"
+        }`}
+        onClick={handleClose}
       />
 
-      {/* Drawer - full-screen mobile, side drawer desktop */}
+      {/* Drawer - with closing animation */}
       <div
         ref={drawerRef}
-        className="absolute right-0 top-0 bottom-0 w-full sm:max-w-md bg-white shadow-2xl cart-drawer flex flex-col safe-top safe-bottom"
+        className={`absolute right-0 top-0 bottom-0 w-full sm:max-w-md bg-white shadow-2xl flex flex-col safe-top safe-bottom transition-all duration-300 ${
+          isClosing
+            ? "translate-x-full opacity-0"
+            : "translate-x-0 opacity-100"
+        }`}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -125,7 +150,7 @@ export default function CartDrawer() {
             )}
           </div>
           <button
-            onClick={closeCart}
+            onClick={handleClose}
             className="touch-target text-gray-400 hover:text-gray-600 transition-colors rounded-lg hover:bg-gray-50"
             aria-label="Close cart"
           >
@@ -171,7 +196,7 @@ export default function CartDrawer() {
                 Looks like you haven&apos;t added anything yet
               </p>
               <button
-                onClick={closeCart}
+                onClick={handleClose}
                 className="btn-primary text-sm touch-target"
               >
                 Continue Shopping
@@ -184,7 +209,6 @@ export default function CartDrawer() {
                   key={item.id}
                   className="flex gap-3 p-3 bg-gray-50 rounded-sm animate-fade-in"
                 >
-                  {/* Image */}
                   <div className="w-20 h-24 md:w-24 md:h-28 bg-gray-100 overflow-hidden flex-shrink-0 rounded-sm">
                     <img
                       src={item.product.images[0]}
@@ -194,7 +218,6 @@ export default function CartDrawer() {
                     />
                   </div>
 
-                  {/* Details */}
                   <div className="flex-1 min-w-0 flex flex-col justify-between">
                     <div className="flex items-start justify-between gap-2">
                       <div className="min-w-0">
@@ -215,7 +238,6 @@ export default function CartDrawer() {
                     </div>
 
                     <div className="flex items-center justify-between mt-2">
-                      {/* Quantity selector - larger touch targets */}
                       <div className="flex items-center border border-gray-200 rounded-sm">
                         <button
                           onClick={() =>
@@ -261,7 +283,6 @@ export default function CartDrawer() {
               </span>
             </div>
 
-            {/* Trust badges - scrollable on mobile */}
             <div className="flex items-center justify-center gap-3 md:gap-4 text-[10px] text-gray-400 overflow-x-auto scrollbar-none py-1">
               <span className="flex items-center gap-1 whitespace-nowrap">
                 <Shield size={12} />
@@ -280,14 +301,14 @@ export default function CartDrawer() {
             <div className="space-y-2">
               <Link
                 href="/cart"
-                onClick={closeCart}
+                onClick={handleClose}
                 className="btn-primary w-full justify-center text-sm py-3"
               >
                 View Cart & Checkout
                 <ArrowRight size={14} />
               </Link>
               <button
-                onClick={closeCart}
+                onClick={handleClose}
                 className="w-full text-center text-sm text-gray-400 hover:text-gray-600 transition-colors py-3 touch-target"
               >
                 Continue Shopping

@@ -14,6 +14,7 @@ import {
   Truck,
   RefreshCw,
 } from "@/components/Icons";
+import RevealOnScroll from "@/components/RevealOnScroll";
 
 export default function CartPage() {
   const {
@@ -33,8 +34,8 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4">
-        <div className="w-20 h-20 rounded-full bg-brand-pink-light/30 flex items-center justify-center mb-6">
-          <ShoppingBag size={36} className="text-brand-pink/50" />
+        <div className="w-20 h-20 rounded-full bg-brand-accent-light/30 flex items-center justify-center mb-6">
+          <ShoppingBag size={36} className="text-brand-accent/50" />
         </div>
         <h1 className="text-2xl font-light text-brand-charcoal mb-2">
           Your Bag is Empty
@@ -57,7 +58,7 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-brand-warm-white">
       {/* Header */}
-      <div className="bg-white border-b border-brand-pink-light/20">
+      <RevealOnScroll animation="fade" className="bg-white border-b border-brand-accent-light/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
           <div className="flex items-center justify-between">
             <div>
@@ -70,35 +71,35 @@ export default function CartPage() {
             </div>
             <Link
               href="/products"
-              className="hidden sm:flex items-center gap-2 text-sm text-brand-charcoal/60 hover:text-brand-pink transition-colors"
+              className="hidden sm:flex items-center gap-2 text-sm text-brand-charcoal/60 hover:text-brand-accent transition-colors"
             >
               <ArrowLeft size={16} />
               Continue Shopping
             </Link>
           </div>
         </div>
-      </div>
+      </RevealOnScroll>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Cart items */}
           <div className="lg:col-span-2 space-y-4">
             {/* Free shipping progress */}
-            <div className="bg-white rounded-xl p-4 border border-brand-pink-light/20">
+            <RevealOnScroll animation="up" className="bg-white rounded-xl p-4 border border-brand-accent-light/20">
               {subtotal < 100 ? (
                 <div>
                   <div className="flex items-center justify-between text-sm text-brand-charcoal/60 mb-2">
                     <span className="flex items-center gap-1.5">
-                      <Truck size={16} className="text-brand-pink" />
+                      <Truck size={16} className="text-brand-accent" />
                       Add {formatPrice(remainingForFree)} more for free shipping
                     </span>
-                    <span className="text-brand-pink-dark font-medium">
+                    <span className="text-brand-accent-dark font-medium">
                       {formatPrice(subtotal)}
                     </span>
                   </div>
-                  <div className="w-full h-2 bg-brand-pink-light/20 rounded-full overflow-hidden">
+                  <div className="w-full h-2 bg-brand-accent-light/20 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-brand-pink to-brand-gold rounded-full transition-all duration-500"
+                      className="h-full bg-gradient-to-r from-brand-gold to-brand-gold-dark rounded-full transition-all duration-500"
                       style={{ width: `${shippingProgress}%` }}
                     />
                   </div>
@@ -109,13 +110,13 @@ export default function CartPage() {
                   You&apos;ve earned free shipping!
                 </div>
               )}
-            </div>
+            </RevealOnScroll>
 
             {/* Items */}
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-xl p-4 border border-brand-pink-light/20 flex gap-4 animate-fade-in"
+                className="bg-white rounded-xl p-4 border border-brand-accent-light/20 flex gap-4 animate-fade-in"
               >
                 {/* Image */}
                 <Link
@@ -135,7 +136,7 @@ export default function CartPage() {
                     <div>
                       <Link
                         href={`/products/${item.product.slug}`}
-                        className="text-sm font-medium text-brand-charcoal hover:text-brand-pink transition-colors"
+                        className="text-sm font-medium text-brand-charcoal hover:text-brand-accent transition-colors"
                       >
                         {item.product.name}
                       </Link>
@@ -143,19 +144,19 @@ export default function CartPage() {
                         {item.color} / {item.size}
                       </p>
                     </div>
-                    <span className="text-sm font-medium text-brand-pink-dark whitespace-nowrap ml-4">
+                    <span className="text-sm font-medium text-brand-accent-dark whitespace-nowrap ml-4">
                       {formatPrice(item.product.price * item.quantity)}
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between mt-4">
                     {/* Quantity */}
-                    <div className="flex items-center border border-brand-pink-light/30 rounded-lg overflow-hidden">
+                    <div className="flex items-center border border-brand-accent-light/30 rounded-lg overflow-hidden">
                       <button
                         onClick={() =>
                           updateQuantity(item.id, item.quantity - 1)
                         }
-                        className="p-2 hover:bg-brand-pink-light/20 transition-colors"
+                        className="touch-target p-2 hover:bg-brand-accent-light/20 transition-colors"
                         aria-label="Decrease quantity"
                       >
                         <Minus size={14} />
@@ -167,7 +168,7 @@ export default function CartPage() {
                         onClick={() =>
                           updateQuantity(item.id, item.quantity + 1)
                         }
-                        className="p-2 hover:bg-brand-pink-light/20 transition-colors"
+                        className="touch-target p-2 hover:bg-brand-accent-light/20 transition-colors"
                         aria-label="Increase quantity"
                       >
                         <Plus size={14} />
@@ -204,8 +205,8 @@ export default function CartPage() {
           </div>
 
           {/* Order summary */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl p-6 border border-brand-pink-light/20 sticky top-[88px]">
+          <RevealOnScroll animation="up" delay={100} className="lg:col-span-1">
+            <div className="bg-white rounded-xl p-6 border border-brand-accent-light/20 sticky top-[88px]">
               <h2 className="text-lg font-medium text-brand-charcoal mb-6">
                 Order Summary
               </h2>
@@ -229,10 +230,10 @@ export default function CartPage() {
                   <span>Estimated Tax</span>
                   <span>{formatPrice(tax)}</span>
                 </div>
-                <div className="border-t border-brand-pink-light/20 pt-3">
+                <div className="border-t border-brand-accent-light/20 pt-3">
                   <div className="flex justify-between font-medium text-brand-charcoal">
                     <span>Total</span>
-                    <span className="text-lg text-brand-pink-dark">
+                    <span className="text-lg text-brand-accent-dark">
                       {formatPrice(total)}
                     </span>
                   </div>
@@ -245,19 +246,19 @@ export default function CartPage() {
               </button>
 
               {/* Trust badges */}
-              <div className="space-y-2 mt-4 pt-4 border-t border-brand-pink-light/20">
+              <div className="space-y-2 mt-4 pt-4 border-t border-brand-accent-light/20">
                 <div className="flex items-center gap-2 text-xs text-brand-charcoal/50">
-                  <Shield size={14} className="text-brand-pink" />
+                  <Shield size={14} className="text-brand-accent" />
                   Secure checkout with SSL encryption
                 </div>
                 <div className="flex items-center gap-2 text-xs text-brand-charcoal/50">
-                  <RefreshCw size={14} className="text-brand-pink" />
+                  <RefreshCw size={14} className="text-brand-accent" />
                   Free 30-day returns
                 </div>
               </div>
 
               {/* Payment methods */}
-              <div className="mt-4 pt-4 border-t border-brand-pink-light/20">
+              <div className="mt-4 pt-4 border-t border-brand-accent-light/20">
                 <p className="text-xs text-brand-charcoal/40 text-center mb-3">
                   We accept
                 </p>
@@ -273,7 +274,7 @@ export default function CartPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </RevealOnScroll>
         </div>
       </div>
     </div>

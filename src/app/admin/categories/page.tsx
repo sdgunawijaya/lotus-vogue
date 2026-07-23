@@ -64,10 +64,16 @@ export default function AdminCategoriesPage() {
         {!isAdding && (
           <button
             onClick={() => setIsAdding(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-brand-pink text-white text-sm font-medium rounded-lg hover:bg-brand-pink-dark transition-colors"
+            className="group relative inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg overflow-hidden transition-all duration-300"
           >
-            <Plus size={16} />
-            Add Category
+            <span className="absolute inset-0 bg-brand-accent transition-colors duration-300 group-hover:bg-brand-accent-dark" />
+            <span className="relative z-10 flex items-center gap-2 text-white">
+              <Plus size={16} />
+              Add Category
+            </span>
+            <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-gold-shimmer" />
+            </span>
           </button>
         )}
       </div>
@@ -87,7 +93,7 @@ export default function AdminCategoriesPage() {
                 onChange={(e) =>
                   setNewCategory({ ...newCategory, name: e.target.value })
                 }
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                 placeholder="Category name"
               />
             </div>
@@ -104,7 +110,7 @@ export default function AdminCategoriesPage() {
                     description: e.target.value,
                   })
                 }
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                 placeholder="Short description"
               />
             </div>
@@ -118,7 +124,7 @@ export default function AdminCategoriesPage() {
                 onChange={(e) =>
                   setNewCategory({ ...newCategory, image: e.target.value })
                 }
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                 placeholder="Image URL (optional)"
               />
             </div>
@@ -136,9 +142,13 @@ export default function AdminCategoriesPage() {
             <button
               onClick={handleAdd}
               disabled={!newCategory.name.trim()}
-              className="px-4 py-1.5 bg-brand-pink text-white text-sm font-medium rounded-lg hover:bg-brand-pink-dark disabled:opacity-50"
+              className="group relative px-4 py-1.5 text-sm font-medium rounded-lg overflow-hidden disabled:opacity-50 transition-all duration-300"
             >
-              Add
+              <span className="absolute inset-0 bg-brand-accent transition-colors duration-300 group-hover:bg-brand-accent-dark" />
+              <span className="relative z-10 text-white">Add</span>
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-gold-shimmer" />
+              </span>
             </button>
           </div>
         </div>
@@ -175,7 +185,7 @@ export default function AdminCategoriesPage() {
                     onChange={(e) =>
                       setEditing({ ...editing, name: e.target.value })
                     }
-                    className="w-full px-2 py-1 text-sm border border-gray-200 rounded focus:outline-none focus:border-brand-pink"
+                    className="w-full px-2 py-1 text-sm border border-gray-200 rounded focus:outline-none focus:border-brand-accent"
                   />
                   <input
                     type="text"
@@ -183,7 +193,7 @@ export default function AdminCategoriesPage() {
                     onChange={(e) =>
                       setEditing({ ...editing, description: e.target.value })
                     }
-                    className="w-full px-2 py-1 text-sm border border-gray-200 rounded focus:outline-none focus:border-brand-pink"
+                    className="w-full px-2 py-1 text-sm border border-gray-200 rounded focus:outline-none focus:border-brand-accent"
                     placeholder="Description"
                   />
                   <input
@@ -192,7 +202,7 @@ export default function AdminCategoriesPage() {
                     onChange={(e) =>
                       setEditing({ ...editing, image: e.target.value })
                     }
-                    className="w-full px-2 py-1 text-sm border border-gray-200 rounded focus:outline-none focus:border-brand-pink"
+                    className="w-full px-2 py-1 text-sm border border-gray-200 rounded focus:outline-none focus:border-brand-accent"
                     placeholder="Image URL"
                   />
                   <div className="flex items-center gap-1">
@@ -225,7 +235,7 @@ export default function AdminCategoriesPage() {
                           image: cat.image,
                         })
                       }
-                      className="p-1.5 text-gray-400 hover:text-brand-pink transition-colors"
+                      className="p-1.5 text-gray-400 hover:text-brand-accent transition-colors"
                     >
                       <Edit size={14} />
                     </button>

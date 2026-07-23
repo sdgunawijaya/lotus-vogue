@@ -78,11 +78,17 @@ export default function AdminTestimonialsPage() {
         </div>
         {!isAdding && editing === null && (
           <button
-            onClick={() => setIsAdding(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-brand-pink text-white text-sm font-medium rounded-lg hover:bg-brand-pink-dark transition-colors"
+onClick={() => setIsAdding(true)}
+            className="group relative inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg overflow-hidden transition-all duration-300"
           >
-            <Plus size={16} />
-            Add Testimonial
+            <span className="absolute inset-0 bg-brand-accent transition-colors duration-300 group-hover:bg-brand-accent-dark" />
+            <span className="relative z-10 flex items-center gap-2 text-white">
+              <Plus size={16} />
+              Add Testimonial
+            </span>
+            <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-gold-shimmer" />
+            </span>
           </button>
         )}
       </div>
@@ -104,7 +110,7 @@ export default function AdminTestimonialsPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                 placeholder="Customer name"
               />
             </div>
@@ -118,7 +124,7 @@ export default function AdminTestimonialsPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, location: e.target.value })
                 }
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                 placeholder="e.g., New York, NY"
               />
             </div>
@@ -133,7 +139,7 @@ export default function AdminTestimonialsPage() {
               onChange={(e) =>
                 setFormData({ ...formData, text: e.target.value })
               }
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink resize-none"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent resize-none"
               placeholder="What they said..."
             />
           </div>
@@ -182,11 +188,15 @@ export default function AdminTestimonialsPage() {
               Cancel
             </button>
             <button
-              onClick={editing !== null ? handleUpdate : handleAdd}
+  onClick={editing !== null ? handleUpdate : handleAdd}
               disabled={!formData.name.trim() || !formData.text.trim()}
-              className="px-4 py-1.5 bg-brand-pink text-white text-sm font-medium rounded-lg hover:bg-brand-pink-dark disabled:opacity-50"
+              className="group relative px-4 py-1.5 text-sm font-medium rounded-lg overflow-hidden disabled:opacity-50 transition-all duration-300"
             >
-              {editing !== null ? "Update" : "Add"}
+              <span className="absolute inset-0 bg-brand-accent transition-colors duration-300 group-hover:bg-brand-accent-dark" />
+              <span className="relative z-10 text-white">{editing !== null ? "Update" : "Add"}</span>
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-gold-shimmer" />
+              </span>
             </button>
           </div>
         </div>
@@ -201,7 +211,7 @@ export default function AdminTestimonialsPage() {
           >
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-brand-pink-light/40 flex items-center justify-center text-brand-pink-dark text-sm font-medium">
+                <div className="w-10 h-10 rounded-full bg-brand-accent-light/40 flex items-center justify-center text-brand-accent-dark text-sm font-medium">
                   {t.avatar}
                 </div>
                 <div>
@@ -216,7 +226,7 @@ export default function AdminTestimonialsPage() {
                   <>
                     <button
                       onClick={() => startEdit(t.id)}
-                      className="p-1.5 text-gray-400 hover:text-brand-pink transition-colors"
+                      className="p-1.5 text-gray-400 hover:text-brand-accent transition-colors"
                     >
                       <Edit size={14} />
                     </button>

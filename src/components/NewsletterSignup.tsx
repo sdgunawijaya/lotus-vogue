@@ -54,14 +54,14 @@ export default function NewsletterSignup() {
         >
           {/* Icon */}
           <div
-            className="inline-flex items-center justify-center w-12 h-12 bg-brand-pink-light/30 rounded-full mb-4"
+            className="inline-flex items-center justify-center w-12 h-12 bg-brand-accent-light/30 rounded-full mb-4"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "scale(1)" : "scale(0.8)",
               transition: "all 0.5s ease-out 0.1s",
             }}
           >
-            <Mail size={20} className="text-brand-pink" />
+            <Mail size={20} className="text-brand-accent" />
           </div>
 
           {/* Heading */}
@@ -114,12 +114,12 @@ export default function NewsletterSignup() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email address"
                   required
-                  className="w-full pl-9 pr-4 py-2.5 bg-white border border-gray-200 text-sm focus:outline-none focus:border-brand-pink focus:ring-1 focus:ring-brand-pink/20 transition-all duration-200"
+                  className="w-full pl-9 pr-4 py-2.5 bg-white border border-gray-200 text-sm focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent/20 transition-all duration-200"
                 />
               </div>
               <button
                 type="submit"
-                className="px-5 py-2.5 bg-[#1a1a1a] text-white text-xs font-semibold tracking-wider uppercase hover:bg-brand-pink-dark transition-all duration-300 flex items-center gap-1.5"
+                className="touch-target px-5 py-2.5 bg-[#1a1a1a] text-white text-xs font-semibold tracking-wider uppercase hover:bg-brand-accent-dark transition-all duration-300 flex items-center gap-1.5"
               >
                 Subscribe
                 <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />

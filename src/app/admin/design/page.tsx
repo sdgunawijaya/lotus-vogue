@@ -24,9 +24,9 @@ const sections: { id: Section; label: string; icon: any }[] = [
 ];
 
 const colorLabels: Record<keyof SiteSettings, string> = {
-  brandPink: "Pink",
-  brandPinkLight: "Pink Light",
-  brandPinkDark: "Pink Dark",
+  brandAccent: "Accent",
+  brandAccentLight: "Accent Light",
+  brandAccentDark: "Accent Dark",
   brandGold: "Gold",
   brandGoldLight: "Gold Light",
   brandGoldDark: "Gold Dark",
@@ -51,9 +51,9 @@ const colorLabels: Record<keyof SiteSettings, string> = {
 } as any;
 
 const colorKeys: (keyof SiteSettings)[] = [
-  "brandPink",
-  "brandPinkLight",
-  "brandPinkDark",
+  "brandAccent",
+  "brandAccentLight",
+  "brandAccentDark",
   "brandGold",
   "brandGoldLight",
   "brandGoldDark",
@@ -105,7 +105,7 @@ export default function AdminDesignPage() {
                 onClick={() => setActiveSection(s.id)}
                 className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg whitespace-nowrap transition-colors ${
                   activeSection === s.id
-                    ? "bg-brand-pink/10 text-brand-pink-dark font-medium"
+                    ? "bg-brand-accent/10 text-brand-accent-dark font-medium"
                     : "text-gray-600 hover:bg-gray-100"
                 }`}
               >
@@ -160,7 +160,7 @@ export default function AdminDesignPage() {
                           onChange={(e) =>
                             updateSettings({ [key]: e.target.value })
                           }
-                          className="w-full mt-0.5 px-2 py-1 text-xs border border-gray-200 rounded focus:outline-none focus:border-brand-pink font-mono"
+                          className="w-full mt-0.5 px-2 py-1 text-xs border border-gray-200 rounded focus:outline-none focus:border-brand-accent font-mono"
                         />
                       </div>
                       <div
@@ -219,7 +219,7 @@ export default function AdminDesignPage() {
                       onChange={(e) =>
                         updateSettings({ heroTitle: e.target.value })
                       }
-                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                     />
                   </div>
 
@@ -234,7 +234,7 @@ export default function AdminDesignPage() {
                         onChange={(e) =>
                           updateSettings({ heroSubtitle: e.target.value })
                         }
-                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                       />
                     </div>
                     <div>
@@ -247,7 +247,7 @@ export default function AdminDesignPage() {
                         onChange={(e) =>
                           updateSettings({ heroDescription: e.target.value })
                         }
-                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                       />
                     </div>
                   </div>
@@ -263,7 +263,7 @@ export default function AdminDesignPage() {
                         onChange={(e) =>
                           updateSettings({ heroCtaText: e.target.value })
                         }
-                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                       />
                     </div>
                     <div>
@@ -278,7 +278,7 @@ export default function AdminDesignPage() {
                             heroSecondaryCtaText: e.target.value,
                           })
                         }
-                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                       />
                     </div>
                   </div>
@@ -293,7 +293,7 @@ export default function AdminDesignPage() {
                       onChange={(e) =>
                         updateSettings({ heroImageUrl: e.target.value })
                       }
-                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                     />
                     <div className="mt-2 w-full h-32 rounded-lg overflow-hidden bg-gray-100">
                       <img
@@ -329,7 +329,7 @@ export default function AdminDesignPage() {
                     onChange={(e) =>
                       updateSettings({ announcementEnabled: e.target.checked })
                     }
-                    className="w-4 h-4 rounded border-gray-300 text-brand-pink focus:ring-brand-pink"
+                    className="w-4 h-4 rounded border-gray-300 text-brand-accent focus:ring-brand-accent"
                   />
                   <span className="text-sm text-gray-700">
                     Show announcement bar
@@ -347,7 +347,7 @@ export default function AdminDesignPage() {
                       onChange={(e) =>
                         updateSettings({ announcementText: e.target.value })
                       }
-                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                     />
                     <div className="mt-3 px-4 py-2 bg-brand-charcoal text-white text-xs text-center rounded-lg tracking-wider">
                       {settings.announcementText}
@@ -402,7 +402,7 @@ export default function AdminDesignPage() {
                         onChange={(e) =>
                           updateSettings({ [item.key]: e.target.checked })
                         }
-                        className="w-4 h-4 rounded border-gray-300 text-brand-pink focus:ring-brand-pink mt-0.5"
+                        className="w-4 h-4 rounded border-gray-300 text-brand-accent focus:ring-brand-accent mt-0.5"
                       />
                       <div>
                         <p className="text-sm font-medium text-gray-700">
@@ -424,7 +424,7 @@ export default function AdminDesignPage() {
                     onChange={(e) =>
                       updateSettings({ footerTagline: e.target.value })
                     }
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent"
                   />
                 </div>
               </div>
@@ -449,19 +449,25 @@ export default function AdminDesignPage() {
                   </h3>
                   <button
                     onClick={handleExport}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-brand-pink text-white text-sm rounded-lg hover:bg-brand-pink-dark transition-colors"
+                    className="group relative inline-flex items-center gap-2 px-4 py-2 text-sm rounded-lg overflow-hidden transition-all duration-300"
                   >
-                    {copied ? (
-                      <>
-                        <Check size={16} />
-                        Copied!
-                      </>
-                    ) : (
-                      <>
-                        <Download size={16} />
-                        Copy Settings JSON
-                      </>
-                    )}
+                    <span className="absolute inset-0 bg-brand-accent transition-colors duration-300 group-hover:bg-brand-accent-dark" />
+                    <span className="relative z-10 flex items-center gap-2 text-white">
+                      {copied ? (
+                        <>
+                          <Check size={16} />
+                          Copied!
+                        </>
+                      ) : (
+                        <>
+                          <Download size={16} />
+                          Copy Settings JSON
+                        </>
+                      )}
+                    </span>
+                    <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-gold-shimmer" />
+                    </span>
                   </button>
                 </div>
 
@@ -473,7 +479,7 @@ export default function AdminDesignPage() {
                     rows={6}
                     value={importJson}
                     onChange={(e) => setImportJson(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm font-mono focus:outline-none focus:border-brand-pink"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm font-mono focus:outline-none focus:border-brand-accent"
                     placeholder='{"brandPink": "#E8A0BF", ...}'
                   />
                   <button

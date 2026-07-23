@@ -32,6 +32,9 @@ export default function ProductsContent() {
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Sync search input with URL
@@ -154,7 +157,7 @@ export default function ProductsContent() {
                       onClick={() => setActiveCategory(cat)}
                       className={`text-left px-3 py-2.5 text-sm rounded-lg touch-target transition-colors ${
                         activeCategory === cat
-                          ? "bg-brand-pink text-white font-medium"
+                          ? "bg-brand-accent text-white font-medium"
                           : "text-gray-600 hover:bg-gray-50"
                       }`}
                     >
@@ -174,7 +177,7 @@ export default function ProductsContent() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full px-3 py-2.5 text-sm bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink"
+                  className="w-full px-3 py-2.5 text-sm bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-brand-accent"
                 >
                   <option value="featured">Featured</option>
                   <option value="newest">Newest</option>
@@ -227,7 +230,7 @@ export default function ProductsContent() {
                 <SlidersHorizontal size={12} />
                 Sort
                 {hasActiveFilters && (
-                  <span className="w-1.5 h-1.5 bg-brand-pink rounded-full" />
+                  <span className="w-1.5 h-1.5 bg-brand-accent rounded-full" />
                 )}
               </button>
             )}
@@ -248,7 +251,7 @@ export default function ProductsContent() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter") handlePageSearch();
                 }}
-                className="w-full pl-9 pr-8 py-2.5 bg-gray-50 border border-gray-100 rounded-lg text-sm focus:outline-none focus:border-[#1a1a1a] focus:bg-white transition-all touch-target"
+                className="w-full pl-9 pr-8 py-3 bg-gray-50 border border-gray-100 rounded-lg text-sm focus:outline-none focus:border-[#1a1a1a] focus:bg-white transition-all touch-target"
               />
               {pageSearchQuery && (
                 <button
@@ -333,12 +336,14 @@ export default function ProductsContent() {
           <div
             className={
               viewMode === "grid"
-                ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6"
+                ? "flex flex-wrap justify-center gap-4"
                 : "space-y-4"
             }
           >
             {filteredProducts.map((product, i) => (
-              <ProductCard key={product.id} product={product} index={i} />
+              <div key={product.id} className="w-[calc(50%-8px)] sm:w-[calc(33.333%-10.667px)] lg:w-[calc(25%-12px)] max-w-[300px]">
+                <ProductCard product={product} index={i} />
+              </div>
             ))}
           </div>
         )}
@@ -357,7 +362,7 @@ export default function ProductsContent() {
       {hasActiveFilters && !showMobileFilters && (
         <button
           onClick={() => setShowMobileFilters(true)}
-          className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-30 bg-[#1a1a1a] text-white px-5 py-3 rounded-full text-xs font-medium shadow-lg hover:bg-brand-pink-dark transition-colors touch-target"
+          className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-30 bg-[#1a1a1a] text-white px-5 py-3 rounded-full text-xs font-medium shadow-lg hover:bg-brand-accent-dark transition-colors touch-target"
         >
           <SlidersHorizontal size={14} className="inline mr-1.5" />
           Filters Active

@@ -88,11 +88,11 @@ export default function HeroSection({
 
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-pink-light/20 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-accent-light/20 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-brand-gold-light/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-brand-pink/30 rounded-full animate-float" />
+        <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-brand-accent/30 rounded-full animate-float" />
         <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-brand-gold/20 rounded-full animate-float" style={{ animationDelay: "1s" }} />
-        <div className="absolute bottom-1/3 left-1/4 w-1 h-1 bg-brand-pink/20 rounded-full animate-float" style={{ animationDelay: "2s" }} />
+        <div className="absolute bottom-1/3 left-1/4 w-1 h-1 bg-brand-accent/20 rounded-full animate-float" style={{ animationDelay: "2s" }} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 w-full">
@@ -104,7 +104,7 @@ export default function HeroSection({
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.2em] uppercase text-brand-pink font-medium bg-brand-pink-light/30 px-3 py-1.5 rounded-full">
+              <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.2em] uppercase text-brand-gold font-medium bg-brand-gold-light/30 px-3 py-1.5 rounded-full">
                 <Sparkles size={10} />
                 {subtitle}
               </span>
@@ -118,7 +118,7 @@ export default function HeroSection({
               {title.split(" ").map((word, i, arr) =>
                 i === arr.length - 1 ? (
                   <span key={i}>
-                    <span className="bg-gradient-to-r from-brand-pink to-brand-gold bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-brand-gold to-brand-gold-dark bg-clip-text text-transparent">
                       {word}
                     </span>
                   </span>
@@ -143,13 +143,16 @@ export default function HeroSection({
             >
               <Link
                 href={ctaHref}
-                className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 bg-[#1a1a1a] text-white text-xs font-semibold tracking-[0.08em] uppercase overflow-hidden transition-all duration-300 hover:bg-brand-pink-dark touch-target"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 bg-[#1a1a1a] text-white text-xs font-semibold tracking-[0.08em] uppercase overflow-hidden transition-all duration-300 hover:bg-brand-gold-dark touch-target"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   {ctaText}
                   <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-brand-pink-dark to-brand-pink opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Gold shimmer sweep on hover */}
+                <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-gold-light/40 to-transparent animate-gold-shimmer" />
+                </span>
               </Link>
               {secondaryCtaText && secondaryCtaHref && (
                 <Link
@@ -176,7 +179,7 @@ export default function HeroSection({
                   key={item.label}
                   className="flex items-center gap-1.5 text-[10px] tracking-[0.05em] uppercase text-gray-400 whitespace-nowrap"
                 >
-                  <span className="text-brand-pink">{item.icon}</span>
+                  <span className="text-brand-gold">{item.icon}</span>
                   {item.label}
                 </span>
               ))}
@@ -195,7 +198,7 @@ export default function HeroSection({
             }}
           >
             <div className="relative">
-              <div className="absolute -top-3 -right-3 w-full h-full border-2 border-brand-pink-light/40 rounded-sm" />
+              <div className="absolute -top-3 -right-3 w-full h-full border-2 border-brand-accent-light/40 rounded-sm" />
               <div className="relative aspect-[4/5] bg-gray-50 overflow-hidden rounded-sm">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent z-10" />
                 <div

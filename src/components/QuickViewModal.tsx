@@ -138,7 +138,7 @@ export default function QuickViewModal() {
 
               {!imageLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-8 h-8 border-2 border-gray-200 border-t-brand-pink rounded-full animate-spin" />
+                  <div className="w-8 h-8 border-2 border-gray-200 border-t-brand-accent rounded-full animate-spin" />
                 </div>
               )}
 
@@ -253,7 +253,7 @@ export default function QuickViewModal() {
           </div>
 
           {/* ─── Right: Product Details ─── */}
-          <div className="flex flex-col p-5 sm:p-6 md:p-8 overflow-y-auto max-h-[50vh] md:max-h-none">
+          <div className="flex flex-col p-5 sm:p-6 md:p-8 overflow-y-auto max-h-none">
             {/* Breadcrumb */}
             <div className="flex items-center gap-1.5 text-[10px] text-gray-400 uppercase tracking-wider mb-3">
               <Link href="/" className="hover:text-gray-600 transition-colors">
@@ -431,7 +431,7 @@ export default function QuickViewModal() {
                 className={`w-full py-3.5 text-xs font-semibold tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 rounded-sm ${
                   isAdded
                     ? "bg-green-600 text-white"
-                    : "bg-[#1a1a1a] text-white hover:bg-brand-pink-dark"
+                    : "bg-[#1a1a1a] text-white hover:bg-brand-accent-dark"
                 }`}
               >
                 {isAdded ? (
@@ -480,7 +480,7 @@ export default function QuickViewModal() {
                   </li>
                 ))}
                 {product.details.length > 4 && (
-                  <li className="text-xs text-brand-pink">
+                  <li className="text-xs text-brand-accent">
                     +{product.details.length - 4} more details
                   </li>
                 )}

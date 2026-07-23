@@ -147,7 +147,7 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0 touch-target py-2">
               <span className="text-lg md:text-xl font-light tracking-[0.15em] text-[#1a1a1a]">
                 LOTUS
-                <span className="font-medium text-brand-pink">VOGUE</span>
+                <span className="font-medium text-brand-accent">VOGUE</span>
               </span>
             </Link>
 
@@ -160,7 +160,7 @@ export default function Header() {
                   className="relative px-3 py-2 text-[11px] tracking-[0.1em] uppercase text-gray-600 hover:text-black transition-all duration-300 group touch-target"
                 >
                   <span className="relative z-10">{link.name}</span>
-                  <span className="absolute inset-x-2 bottom-0 h-[2px] bg-brand-pink scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                  <span className="absolute inset-x-2 bottom-0 h-[2px] bg-brand-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                 </Link>
               ))}
             </nav>
@@ -220,7 +220,7 @@ export default function Header() {
               <div className="relative group">
                 <Search
                   size={16}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-pink transition-colors duration-200"
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-accent transition-colors duration-200"
                 />
                 <input
                   ref={searchInputRef}
@@ -235,7 +235,7 @@ export default function Header() {
                       setSearchQuery("");
                     }
                   }}
-                  className="w-full pl-10 pr-24 py-3 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink focus:ring-2 focus:ring-brand-pink/10 transition-all duration-200"
+                  className="w-full pl-10 pr-24 py-3 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/10 transition-all duration-200"
                   autoFocus
                 />
                 {searchQuery && (
@@ -248,7 +248,7 @@ export default function Header() {
                       <X size={14} />
                     </button>
                     <button
-                      className="touch-target text-white bg-[#1a1a1a] hover:bg-brand-pink-dark transition-colors rounded-md"
+                      className="touch-target text-white bg-[#1a1a1a] hover:bg-brand-accent-dark transition-colors rounded-md"
                       onClick={() => handleSearch(searchQuery)}
                       aria-label="Submit search"
                     >
@@ -294,7 +294,7 @@ export default function Header() {
           >
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-50">
               <span className="text-sm font-light tracking-[0.15em]">
-                LOTUS<span className="font-medium text-brand-pink">VOGUE</span>
+                LOTUS<span className="font-medium text-brand-accent">VOGUE</span>
               </span>
               <button
                 onClick={() => setIsMenuOpen(false)}
@@ -322,7 +322,7 @@ export default function Header() {
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
-                      className="text-gray-300 group-hover:text-brand-pink transition-colors"
+                      className="text-gray-300 group-hover:text-brand-accent transition-colors"
                     >
                       <polyline points="9 18 15 12 9 6" />
                     </svg>

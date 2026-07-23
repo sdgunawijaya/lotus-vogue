@@ -75,7 +75,7 @@ export default function AdminProductsPage() {
         </div>
         <Link
           href="/admin/products/new"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-brand-pink text-white text-sm font-medium rounded-lg hover:bg-brand-pink-dark transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-brand-accent text-white text-sm font-medium rounded-lg hover:bg-brand-accent-dark transition-colors"
         >
           <Plus size={16} />
           Add Product
@@ -95,13 +95,13 @@ export default function AdminProductsPage() {
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink transition-colors"
+              className="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent transition-colors"
             />
           </div>
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink bg-white"
+            className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent bg-white"
           >
             <option value="all">All Categories</option>
             {categories.map((cat) => (
@@ -113,7 +113,7 @@ export default function AdminProductsPage() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-pink bg-white"
+            className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-accent bg-white"
           >
             <option value="name">Sort by Name</option>
             <option value="price-asc">Price: Low to High</option>
@@ -181,7 +181,7 @@ export default function AdminProductsPage() {
                     </span>
                   </td>
                   <td className="px-5 py-4 hidden sm:table-cell">
-                    <span className="text-sm font-medium text-brand-pink-dark">
+                    <span className="text-sm font-medium text-brand-accent-dark">
                       {formatPrice(product.price)}
                     </span>
                     {product.originalPrice && (
@@ -219,7 +219,7 @@ export default function AdminProductsPage() {
                     <div className="flex items-center justify-end gap-1">
                       <Link
                         href={`/admin/products/${product.id}/edit`}
-                        className="p-1.5 text-gray-400 hover:text-brand-pink transition-colors rounded hover:bg-pink-50"
+                        className="p-1.5 text-gray-400 hover:text-brand-accent transition-colors rounded hover:bg-brand-gold-light/20"
                         aria-label="Edit product"
                       >
                         <Edit size={16} />
@@ -266,7 +266,7 @@ export default function AdminProductsPage() {
             </p>
             <Link
               href="/admin/products/new"
-              className="inline-flex items-center gap-2 mt-4 text-sm text-brand-pink hover:underline"
+              className="inline-flex items-center gap-2 mt-4 text-sm text-brand-accent hover:underline"
             >
               <Plus size={14} />
               Add your first product

@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import type { Product, Category } from "@/data/products";
-import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "./Icons";
+import { ArrowRight, ChevronLeft, ChevronRight, Sparkles, Eye } from "./Icons";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useQuickView } from "@/context/QuickViewContext";
 
 interface FeaturedSectionProps {
   title: string;
@@ -18,6 +19,7 @@ export default function FeaturedSection({
   products,
   viewAllHref,
 }: FeaturedSectionProps) {
+  const { openQuickView } = useQuickView();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -98,7 +100,7 @@ export default function FeaturedSection({
         >
           <div>
             {subtitle && (
-              <span className="text-[10px] tracking-[0.2em] uppercase text-brand-pink font-medium flex items-center gap-1.5">
+              <span className="text-[10px] tracking-[0.2em] uppercase text-brand-gold font-medium flex items-center gap-1.5">
                 <Sparkles size={10} />
                 {subtitle}
               </span>
@@ -175,6 +177,19 @@ export default function FeaturedSection({
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300" />
 
+                {/* Quick View eye button */}
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openQuickView(product);
+                  }}
+                  className="absolute top-2 right-2 z-10 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 duration-200 active:scale-90"
+                  aria-label="Quick view"
+                >
+                  <Eye size={14} className="text-gray-600" />
+                </button>
+
                 {/* Badges */}
                 <div className="absolute top-2 left-2 flex flex-col gap-1">
                   {product.isNew && (
@@ -189,11 +204,18 @@ export default function FeaturedSection({
                   )}
                 </div>
 
-                {/* Quick shop */}
-                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <span className="block w-full py-2.5 bg-white/90 backdrop-blur-sm text-[10px] font-medium tracking-wider uppercase text-center text-[#1a1a1a] shadow-sm hover:bg-white transition-colors touch-target rounded-sm">
-                    Quick Shop
-                  </span>
+                {/* Quick view + quick add */}
+                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex gap-1.5">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      openQuickView(product);
+                    }}
+                    className="flex-1 py-2.5 bg-white/90 backdrop-blur-sm text-[10px] font-medium tracking-wider uppercase text-center text-[#1a1a1a] shadow-sm hover:bg-white transition-colors touch-target rounded-sm"
+                  >
+                    Quick View
+                  </button>
                 </div>
               </div>
 
@@ -201,7 +223,7 @@ export default function FeaturedSection({
                 <p className="text-[9px] text-gray-400 tracking-[0.12em] uppercase font-medium">
                   {product.category}
                 </p>
-                <h3 className="text-sm font-medium text-gray-900 truncate group-hover:text-brand-pink transition-colors">
+                <h3 className="text-sm font-medium text-gray-900 truncate group-hover:text-brand-gold transition-colors">
                   {product.name}
                 </h3>
                 <div className="flex items-center gap-2">
@@ -318,7 +340,7 @@ export function CategoryShowcase({ categories }: { categories: Category[] }) {
                   {category.itemCount} items
                 </p>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-pink scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </Link>
           ))}
         </div>

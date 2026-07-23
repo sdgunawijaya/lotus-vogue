@@ -62,7 +62,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
   return (
     <div
       ref={cardRef}
-      className="group"
+      className="group w-full"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0)" : "translateY(20px)",
@@ -191,7 +191,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
           <p className="text-[10px] text-gray-400 tracking-[0.12em] uppercase font-medium">
             {product.category}
           </p>
-          <h3 className="text-sm font-medium text-gray-900 truncate group-hover:text-brand-pink transition-colors duration-200">
+          <h3 className="text-sm font-medium text-gray-900 truncate group-hover:text-brand-gold transition-colors duration-200">
             {product.name}
           </h3>
           <div className="flex items-center gap-2">
